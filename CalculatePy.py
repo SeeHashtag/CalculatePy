@@ -20,14 +20,49 @@ def button_addition(): # The addition function details
     first_number = e.get() # Store the first entered number in this variable
     global f_num # create a global variable that can be used by the botton_equal() function
     f_num = int(first_number) 
+    global math
+    math = "addition"
     e.delete(0, END) # clear the display contents
-    return
+    
+def button_subtract():
+    first_number = e.get() # Store the first entered number in this variable
+    global f_num # create a global variable that can be used by the botton_equal() function
+    f_num = int(first_number) 
+    global math
+    math = "subtraction"
+    e.delete(0, END) # clear the display contents
+
+def button_multiply():
+    first_number = e.get() # Store the first entered number in this variable
+    global f_num # create a global variable that can be used by the botton_equal() function
+    f_num = int(first_number) 
+    global math
+    math = "multiplication"
+    e.delete(0, END) # clear the display contents
+
+def button_divide():
+    first_number = e.get() # Store the first entered number in this variable
+    global f_num # create a global variable that can be used by the botton_equal() function
+    f_num = int(first_number) 
+    global math
+    math = "division"
+    e.delete(0, END) # clear the display contents
 
 def button_equal():
     second_number = e.get() # store whatever number is in the display box
     e.delete(0, END) # clear the display box
-    e.insert(0, f_num + int(second_number)) # insert the result
     
+    if math == "addition":
+        e.insert(0, f_num + int(second_number)) # insert the result
+    elif math == "subtraction":
+        e.insert(0, f_num - int(second_number)) # insert the result
+    elif math == "multiplication":
+        e.insert(0, f_num * int(second_number)) # insert the result
+    elif math == "division":
+        e.insert(0, f_num / int(second_number)) # insert the result
+    else:
+        print("An error occured")
+
 # Button dimensions and attributes for numbers 0 - 9, clear, add, etc. 
 button_1 = Button(root, text="1", padx=40, pady=20, command=lambda: button_click(1))
 button_2 = Button(root, text="2", padx=40, pady=20, command=lambda: button_click(2))
@@ -39,7 +74,11 @@ button_7 = Button(root, text="7", padx=40, pady=20, command=lambda: button_click
 button_8 = Button(root, text="8", padx=40, pady=20, command=lambda: button_click(8))
 button_9 = Button(root, text="9", padx=40, pady=20, command=lambda: button_click(9))
 button_0 = Button(root, text="0", padx=40, pady=20, command=lambda: button_click(0))
+
 button_add = Button(root, text="+", padx=39, pady=20, command=button_addition)
+button_subtact = Button(root, text="-", padx=40, pady=20, command=button_subtract)
+button_multiply = Button(root, text="*", padx=40, pady=20, command=button_multiply)
+button_divide = Button(root, text="/", padx=40, pady=20, command=button_divide)
 button_equal = Button(root, text="=", padx=91, pady=20, command=button_equal)
 button_clear = Button(root, text="Clear", padx=79, pady=20, command=button_clear)
 
@@ -61,6 +100,9 @@ button_clear.grid(row=4, column=1, columnspan=2)
 button_add.grid(row=5, column=0)
 button_equal.grid(row=5, column=1, columnspan=2)
 
+button_subtact.grid(row=6, column=0)
+button_multiply.grid(row=6, column=1)
+button_divide.grid(row=6, column=2)
 
 root.mainloop()
 
